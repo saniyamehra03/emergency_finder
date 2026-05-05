@@ -169,6 +169,17 @@ const nearestPlace =
       handleEmergencyClick();
     }
   },[nearestPlace,emergencyMode]);
+  const shareLocation = () => {
+  if (!location) {
+    alert("Location not available");
+    return;
+  }
+
+  const url = `https://www.google.com/maps?q=${location.lat},${location.lng}`;
+
+  navigator.clipboard.writeText(url);
+  alert("📤 Location copied! Share it with someone.");
+};
    const routePositions = location && nearestPlace
   ? [
       [location.lat, location.lng],
@@ -305,6 +316,19 @@ onClick={() => {
   }}>
   🚨 Emergency Help
 </button>
+<button 
+  onClick={shareLocation}
+  style={{
+    marginTop: "10px",
+    padding: "8px 15px",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer"
+  }}
+>
+  📤 Share My Location
+</button>
+
       <button className ="button" onClick={() => {
         setEmergencyMode(false);
         setType("hospital");
