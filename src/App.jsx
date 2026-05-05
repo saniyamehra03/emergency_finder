@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 const App = () => {
+  const [lastUpdated, setLastUpdated] = useState(null);
 const [animatedPos, setAnimatedPos] = useState(null);
   const[user,setUser] = useState(null);
   const [watchId , setWatchId] = useState(null);
@@ -19,6 +20,12 @@ const [animatedPos, setAnimatedPos] = useState(null);
   const [search ,setSearch] = useState("");
   const [emergencyMode , setEmergencyMode] = useState(false);
   const getLocation = () => {
+
+    setLocation({
+  lat: position.coords.latitude,
+  lng: position.coords.longitude
+});
+setLastUpdated(new Date());
     if(!navigator.geolocation){
       alert("Geolocation is not supported by your browser");
       return;
@@ -268,6 +275,12 @@ onClick={() => {
 }}>
   Logout
 </button>
+{location && (
+  <div style={{ marginTop: "10px", fontSize: "14px" }}>
+    <p>📡 Live Tracking ON</p>
+    <p>🕒 Last update: {lastUpdated?.toLocaleTimeString()}</p>
+  </div>
+)}
       <Heading />
      <h3>Welcome, {user?.username} 👋</h3>
 <p style={{fontSize: "12px", color: "gray"}}>
