@@ -21,11 +21,6 @@ const [animatedPos, setAnimatedPos] = useState(null);
   const [emergencyMode , setEmergencyMode] = useState(false);
   const getLocation = () => {
 
-    setLocation({
-  lat: position.coords.latitude,
-  lng: position.coords.longitude
-});
-setLastUpdated(new Date());
     if(!navigator.geolocation){
       alert("Geolocation is not supported by your browser");
       return;
@@ -38,6 +33,7 @@ setLastUpdated(new Date());
          lat: position.coords.latitude ,
          lng: position.coords.longitude 
         });
+         setLastUpdated(new Date());
       },
       (error) => {
         console.log("Error:", error.message);
@@ -250,6 +246,10 @@ const nearestPlace =
      const url = `https://www.google.com/maps/dir/?api=1&origin=${location.lat},${location.lng}&destination=${nearestPlace.lat},${nearestPlace.lon}`;
       window.open(url, "_blank");
   };
+  const playAlarm = () => {
+  const audio = new Audio("https://www.soundjay.com/button/beep-07.wav");
+  audio.play();
+};
   return (
     <>
       <div>
@@ -298,6 +298,7 @@ onClick={() => {
          cursor: "pointer"
        }} 
    onClick={() =>{
+     playAlarm();
     setEmergencyMode(true);
   getLocation();
   setType("hospital");
