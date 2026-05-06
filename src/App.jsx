@@ -287,7 +287,7 @@ onClick={() => {
   Logout
 </button>
 {location && (
-  <div style={{ marginTop: "10px", fontSize: "14px" }}>
+  <div className ="top-info">
     <p>📡 Live Tracking ON</p>
     <p>🕒 Last update: {lastUpdated?.toLocaleTimeString()}</p>
   </div>
