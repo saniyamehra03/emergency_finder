@@ -7,6 +7,7 @@ const{
     updateEmergency,
     deleteEmergency
 }= require('../controllers/emergencyController');
+
 router.post("/emergency", addEmergency);
 router.get("/emergency", getEmergencies);
 router.put("/emergency/:index", updateEmergency);
