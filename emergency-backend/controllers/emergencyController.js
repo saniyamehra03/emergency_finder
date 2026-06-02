@@ -9,7 +9,7 @@ exports.addEmergency = async(req,res) => {
         res.status(500).send(error.message);
     }
 };
-    exports.getEmergencies = (req,res) => {
+    exports.getEmergencies = async (req,res) => {
         try{
             const data =await Emergency.find();
             res.json(data);
@@ -29,7 +29,7 @@ exports.addEmergency = async(req,res) => {
         }
     };
         
-    exports.deleteEmergency = (req,res) => {
+    exports.deleteEmergency = async(req,res) => {
         try {
          const id =req.params.id;
             await Emergency.findByIdAndDelete(id);

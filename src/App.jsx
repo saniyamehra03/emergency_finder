@@ -5,9 +5,12 @@ import { Polyline } from "react-leaflet";
 import { useMap } from "react-leaflet";
 import Heading from './components/Heading';
 import Login from "./components/Login";
+import Header from "./components/Header";
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 const App = () => {
+  const[incident,setIncident] = useState("");
+  const[aiResult,setAiResult] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
 const [animatedPos, setAnimatedPos] = useState(null);
   const[user,setUser] = useState(null);
@@ -19,8 +22,9 @@ const [animatedPos, setAnimatedPos] = useState(null);
   const[error,setError] = useState("");
   const [search ,setSearch] = useState("");
   const [emergencyMode , setEmergencyMode] = useState(false);
-  const getLocation = () => {
 
+  
+  const getLocation = () => {
     if(!navigator.geolocation){
       alert("Geolocation is not supported by your browser");
       return;
@@ -169,7 +173,7 @@ const nearestPlace =
       handleEmergencyClick();
     }
   },[nearestPlace,emergencyMode]);
-  const shareLocation = () => {
+ const shareLocation = () => {
   if (!location) {
     alert("Location not available");
     return;
@@ -180,12 +184,67 @@ const nearestPlace =
   navigator.clipboard.writeText(url);
   alert("📤 Location copied! Share it with someone.");
 };
-   const routePositions = location && nearestPlace
-  ? [
-      [location.lat, location.lng],
-      [nearestPlace.lat, nearestPlace.lon]
-    ]
-  : [];                  
+   const analyzeEmergency = () => {
+  const text = incident.toLowerCase();
+
+  if (
+    text.includes("bleeding") ||
+    text.includes("accident") ||
+    text.includes("injury") ||
+    text.includes("unconscious")
+  ) {
+    setAiResult({
+      type: "Medical Emergency",
+      severity: "HIGH 🔴",
+      action:
+        "Call ambulance immediately, provide first aid if trained, and keep the person safe."
+    });
+  }
+
+  else if (
+    text.includes("fire") ||
+    text.includes("smoke") ||
+    text.includes("burn") ||
+    text.includes("explosion")
+  ) {
+    setAiResult({
+      type: "Fire Emergency",
+      severity: "HIGH 🔴",
+      action:
+        "Call fire department immediately and evacuate the area."
+    });
+  }
+
+  else if (
+    text.includes("theft") ||
+    text.includes("assault") ||
+    text.includes("robbery") ||
+    text.includes("fight")
+  ) {
+    setAiResult({
+      type: "Police Emergency",
+      severity: "MEDIUM 🟠",
+      action:
+        "Call police immediately and provide incident details."
+    });
+  }
+
+  else {
+    setAiResult({
+      type: "General Emergency",
+      severity: "UNKNOWN ⚪",
+      action:
+        "Contact emergency services and explain the situation clearly."
+    });
+  }
+};
+  const routePositions =
+  location && nearestPlace
+    ? [
+        [location.lat, location.lng],
+        [nearestPlace.lat, nearestPlace.lon]
+      ]
+    : [];
    const MapUpdater = ({location}) => {
     const map = useMap();
     useEffect(() => { 
@@ -257,47 +316,28 @@ const nearestPlace =
      const url = `https://www.google.com/maps/dir/?api=1&origin=${location.lat},${location.lng}&destination=${nearestPlace.lat},${nearestPlace.lon}`;
       window.open(url, "_blank");
   };
-  const playAlarm = () => {
-  const audio = new Audio("https://www.soundjay.com/button/beep-07.wav");
+ const playAlarm = () => {
+  const audio = new Audio(
+    "https://www.soundjay.com/button/beep-07.wav"
+  );
   audio.play();
 };
-  return (
-    <>
-      <div>
-    {!user ? (
+
+return (
+  <>
+  {!user ? (
       <Login onLogin={setUser} />
     ) : (
-    <div className='container main-box'>
-     <button 
-  style={{
-  position: "absolute",
-  top: "20px",
-  right: "20px",
-  background: "red",
-  color: "white",
-  border: "none",
-  padding: "8px 15px",
-  borderRadius: "5px",
-  cursor: "pointer"
-}}
-onClick={() => {
-  localStorage.removeItem("user");
-  setUser(null);
-}}>
-  Logout
-</button>
-{location && (
-  <div className ="top-info">
-    <p>📡 Live Tracking ON</p>
-    <p>🕒 Last update: {lastUpdated?.toLocaleTimeString()}</p>
-  </div>
-)}
-      <Heading />
-     <h3>Welcome, {user?.username} 👋</h3>
-<p style={{fontSize: "12px", color: "gray"}}>
-  Stay safe ❤️
-</p>
-
+  <div className='container main-box'>
+      <Header
+  user={user}
+  location={location}
+  lastUpdated={lastUpdated}
+  onLogout={() => {
+    localStorage.removeItem("user");
+    setUser(null);
+  }}
+/>
           <button style={{
           background: "red", 
           color: "white", 
@@ -328,6 +368,44 @@ onClick={() => {
 >
   📤 Share My Location
 </button>
+      <hr/>
+      <h3>🤖 AI Emergency Analyzer</h3>
+
+<textarea
+  value={incident}
+  onChange={(e) => setIncident(e.target.value)}
+  placeholder="Describe emergency..."
+  rows="4"
+  style={{
+    width: "100%",
+    padding: "10px",
+    marginTop: "10px"
+  }}
+/>
+
+<button
+  onClick={analyzeEmergency}
+  style={{
+    marginTop: "10px",
+    padding: "10px 20px"
+  }}
+>
+  Analyze Emergency
+</button>
+
+{aiResult && (
+  <div
+    style={{
+      border: "1px solid gray",
+      padding: "10px",
+      marginTop: "10px"
+    }}
+  >
+    <p><b>Type:</b> {aiResult.type}</p>
+    <p><b>Severity:</b> {aiResult.severity}</p>
+    <p><b>Action:</b> {aiResult.action}</p>
+  </div>
+)}
 
       <button className ="button" onClick={() => {
         setEmergencyMode(false);
@@ -388,6 +466,12 @@ onClick={() => {
   >
       <Popup>You are here</Popup>
     </Marker>
+     {location && nearestPlace && (
+    <Routing
+      location={location}
+      nearestPlace={nearestPlace}
+    />
+  )}
      {routePositions.length > 0 && (
     <Polyline positions={routePositions} />
      )}
@@ -445,7 +529,7 @@ onClick={() => {
     
     </div>
     )}
-    </div>
+
     </>
   );
 }
