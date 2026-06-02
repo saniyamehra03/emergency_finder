@@ -1,18 +1,26 @@
 import "./App.css";
+import { BrowserRouter ,Routes,Route } from "react-router-dom";
 import React,{useState,useEffect} from 'react';
-import "leaflet/dist/leaflet.css";
+import Home from"./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import EmergencyAnalyzer from "./pages/EmergencyAnalyzer";
+import MapPage from "./pages/MapPage";
+import NearbyServices from "./pages/NearbyServices";
+import Contacts from "./pages/Contacts";
+import Profile from "./pages/Profile";
+import EmergencyCard from "./components/EmergencyCard";
+import Navbar from "./pages/Navbar";
+import Sidebar from "./pages/Sidebar";
+
 import { Polyline } from "react-leaflet";
 import { useMap } from "react-leaflet";
 import Heading from './components/Heading';
 import Login from "./components/Login";
 import Header from "./components/Header";
-import L from "leaflet";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 const App = () => {
-  const[incident,setIncident] = useState("");
-  const[aiResult,setAiResult] = useState(null);
+  
   const [lastUpdated, setLastUpdated] = useState(null);
-const [animatedPos, setAnimatedPos] = useState(null);
+  const [animatedPos, setAnimatedPos] = useState(null);
   const[user,setUser] = useState(null);
   const [watchId , setWatchId] = useState(null);
   const [location, setLocation] = useState(null);
@@ -184,87 +192,7 @@ const nearestPlace =
   navigator.clipboard.writeText(url);
   alert("📤 Location copied! Share it with someone.");
 };
-   const analyzeEmergency = () => {
-  const text = incident.toLowerCase();
-
-  if (
-    text.includes("bleeding") ||
-    text.includes("accident") ||
-    text.includes("injury") ||
-    text.includes("unconscious")
-  ) {
-    setAiResult({
-      type: "Medical Emergency",
-      severity: "HIGH 🔴",
-      action:
-        "Call ambulance immediately, provide first aid if trained, and keep the person safe."
-    });
-  if (
-  window.confirm(
-    "🚑 Medical Emergency Detected! Navigate to nearest hospital?"
-  )
-) {
-  setType("hospital");
-  getLocation();
-  setEmergencyMode(true);
-}
-}
-
-  else if (
-    text.includes("fire") ||
-    text.includes("smoke") ||
-    text.includes("burn") ||
-    text.includes("explosion")
-  ) {
-    setAiResult({
-      type: "Fire Emergency",
-      severity: "HIGH 🔴",
-      action:
-        "Call fire department immediately and evacuate the area."
-    });
-   if (
-  window.confirm(
-    "🔥 Fire Emergency Detected! Navigate to nearest fire station?"
-  )
-) {
-  setType("fire");
-  getLocation();
-  setEmergencyMode(true);
-}
-  }
-
-  else if (
-    text.includes("theft") ||
-    text.includes("assault") ||
-    text.includes("robbery") ||
-    text.includes("fight")
-  ) {
-    setAiResult({
-      type: "Police Emergency",
-      severity: "MEDIUM 🟠",
-      action:
-        "Call police immediately and provide incident details."
-    });
-   if (
-  window.confirm(
-    "🚓 Police Emergency Detected! Navigate to nearest police station?"
-  )
-) {
-  setType("police");
-  getLocation();
-  setEmergencyMode(true);
-}
-  }
-
-  else {
-    setAiResult({
-      type: "General Emergency",
-      severity: "UNKNOWN ⚪",
-      action:
-        "Contact emergency services and explain the situation clearly."
-    });
-  }
-};
+  
   const routePositions =
   location && nearestPlace
     ? [
@@ -272,65 +200,7 @@ const nearestPlace =
         [nearestPlace.lat, nearestPlace.lon]
       ]
     : [];
-   const MapUpdater = ({location}) => {
-    const map = useMap();
-    useEffect(() => { 
-      if(location){
-        map.setView([location.lat, location.lng], 15);
-      }
-    }, [location]);
-    return null;
-  };
-  const Routing = ({ location, nearestPlace }) => {
-  const map = useMap();
-
-  useEffect(() => {
-    if (!location || !nearestPlace) return;
-
-    const routingControl = L.Routing.control({
-      waypoints: [
-        L.latLng(location.lat, location.lng),
-        L.latLng(nearestPlace.lat, nearestPlace.lon)
-      ],
-      lineOptions: {
-        styles: [{ color: "blue", weight: 5 }]
-      },
-      createMarker: () => null 
-    }).addTo(map);
-
-    return () => map.removeControl(routingControl);
-  }, [location, nearestPlace]);
-
-  return null;
-};
-     const filteredPlaces = search?
-      places.filter((place) => {
-    const name = place.tags?.name?.toLowerCase() || "";
-  return name.includes(search.toLowerCase().trim());
-  }) :places;
-    const sortedPlaces = location ?
-    [...filteredPlaces].sort((a,b) => {
-    const distA = parseFloat(getDistance(location.lat ,location.lng ,a.lat ,a.lon));
-    const distB = parseFloat(getDistance(location.lat , location.lng ,b.lat,b.lon));
-    return distA - distB;
-  })
-  : [];
-  const userIcon = new L.Icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/64/64113.png",
-    iconSize:[30,30],
-  });
-  const hospitalIcon = new L.Icon({
-    iconUrl : "https://cdn-icons-png.flaticon.com/512/2967/2967350.png",
-    iconSize : [30,30],
-  });
-  const policeIcon = new L.Icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/484/484167.png"
-  });
-  const foreIcon = new L.Icon({
-    iconUrl : "https://cdn-icons-png.flaticon.com/512/482/482132.png",
-    iconSize : [30,30],
-  });
-
+  
   const handleEmergencyClick = () => {
     if(!location) {
       alert("Location not available");
@@ -395,45 +265,7 @@ return (
 >
   📤 Share My Location
 </button>
-      <hr/>
-      <div className="ai-card">
-      <h3>🤖 AI Emergency Analyzer</h3>
-
-<textarea
-  value={incident}
-  onChange={(e) => setIncident(e.target.value)}
-  placeholder="Describe emergency..."
-  rows="4"
-  style={{
-    width: "100%",
-    padding: "10px",
-    marginTop: "10px"
-  }}
-/>
-
-<button className="analyze-btn"
-  onClick={analyzeEmergency}
-  style={{
-    marginTop: "10px",
-    padding: "10px 20px"
-  }}
->
-  Analyze Emergency
-</button>
-
-{aiResult && (
-  <div className="result-card"
-    style={{
-      border: "1px solid gray",
-      padding: "10px",
-      marginTop: "10px"
-    }}
-  >
-    <p><b>Type:</b> {aiResult.type}</p>
-    <p><b>Severity:</b> {aiResult.severity}</p>
-    <p><b>Action:</b> {aiResult.action}</p>
-  </div>
-)}
+      
 <div className="action-buttons">
 
       <button className ="ambulance-btn" onClick={() => {
@@ -510,7 +342,7 @@ return (
       icon={
       type === "hospital" ? hospitalIcon :
       type === "police" ? policeIcon :
-      type === "fire" ? foreIcon : null
+      type === "fire" ? fireIcon : null
       }>
         <Popup>{place.tags?.name || "Unnamed Place"}</Popup>
       </Marker>
