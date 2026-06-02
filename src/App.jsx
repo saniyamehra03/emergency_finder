@@ -365,7 +365,7 @@ return (
     setUser(null);
   }}
 />
-          <button style={{
+          <button className="sos-btn"style={{
           background: "red", 
           color: "white", 
           marginTop: "10px",
@@ -396,6 +396,7 @@ return (
   📤 Share My Location
 </button>
       <hr/>
+      <div className="ai-card">
       <h3>🤖 AI Emergency Analyzer</h3>
 
 <textarea
@@ -410,7 +411,7 @@ return (
   }}
 />
 
-<button
+<button className="analyze-btn"
   onClick={analyzeEmergency}
   style={{
     marginTop: "10px",
@@ -421,7 +422,7 @@ return (
 </button>
 
 {aiResult && (
-  <div
+  <div className="result-card"
     style={{
       border: "1px solid gray",
       padding: "10px",
@@ -433,33 +434,35 @@ return (
     <p><b>Action:</b> {aiResult.action}</p>
   </div>
 )}
+<div className="action-buttons">
 
-      <button className ="button" onClick={() => {
+      <button className ="ambulance-btn" onClick={() => {
         setEmergencyMode(false);
         setType("hospital");
         getLocation();
        console.log("Location:",location);
       }}>
-        Ambulance
+        🚑Ambulance
       </button>
 
-      <button className='button' onClick={() => {
+      <button className="police-btn" onClick={() => {
         setEmergencyMode(false);
          setType("police");
         getLocation();
        console.log("Location:",location);
       }}>
-        Police
+       👮  Police
       </button>
 
-      <button className='button' onClick={() => {
+      <button className="fire-btn" onClick={() => {
         setEmergencyMode(false);
          setType("fire");
         getLocation();
         console.log("Location:",location);
       }}>
-        Fire
+        🔥Fire
       </button>
+      </div>
       {loading && places.length === 0 && !emergencyMode && 
       <p>🔍 Finding nearby help...</p>}
    
@@ -523,7 +526,7 @@ return (
         <h2>Nearby Results</h2>
         {sortedPlaces.map((place,index) =>(
           <div className='card'
-          
+         
           style={{border: place === nearestPlace ? "2px solid green" : ""}}
            key={index}>
             {place === nearestPlace && <p>⭐ Nearest</p>}
@@ -552,12 +555,13 @@ return (
           </div>                                                                                                                                                                                                                          
         ))}
       </div>
-     )}
-    
-    </div>
     )}
-
+    </div>
+    </div>
+    )}                                                                        
     </>
-  );
-}
+
+);
+};
+
 export default App;
