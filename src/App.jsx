@@ -199,7 +199,16 @@ const nearestPlace =
       action:
         "Call ambulance immediately, provide first aid if trained, and keep the person safe."
     });
-  }
+  if (
+  window.confirm(
+    "🚑 Medical Emergency Detected! Navigate to nearest hospital?"
+  )
+) {
+  setType("hospital");
+  getLocation();
+  setEmergencyMode(true);
+}
+}
 
   else if (
     text.includes("fire") ||
@@ -213,6 +222,15 @@ const nearestPlace =
       action:
         "Call fire department immediately and evacuate the area."
     });
+   if (
+  window.confirm(
+    "🔥 Fire Emergency Detected! Navigate to nearest fire station?"
+  )
+) {
+  setType("fire");
+  getLocation();
+  setEmergencyMode(true);
+}
   }
 
   else if (
@@ -227,6 +245,15 @@ const nearestPlace =
       action:
         "Call police immediately and provide incident details."
     });
+   if (
+  window.confirm(
+    "🚓 Police Emergency Detected! Navigate to nearest police station?"
+  )
+) {
+  setType("police");
+  getLocation();
+  setEmergencyMode(true);
+}
   }
 
   else {
