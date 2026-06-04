@@ -18,19 +18,16 @@ import Heading from './components/Heading';
 import Login from "./components/Login";
 import Header from "./components/Header";
 const App = () => {
-  
-  const [lastUpdated, setLastUpdated] = useState(null);
-  const [animatedPos, setAnimatedPos] = useState(null);
   const[user,setUser] = useState(null);
-  const [watchId , setWatchId] = useState(null);
-  const [location, setLocation] = useState(null);
-  const[type,setType] = useState("");
-  const [places ,setPlaces] = useState([]);
-  const[loading,setLoading] =useState(false);
-  const[error,setError] = useState("");
-  const [search ,setSearch] = useState("");
-  const [emergencyMode , setEmergencyMode] = useState(false);
-
+  // const [watchId , setWatchId] = useState(null);
+  // const [location, setLocation] = useState(null);
+  // const[type,setType] = useState("");
+  // const [places ,setPlaces] = useState([]);
+  // const[loading,setLoading] =useState(false);
+  // const[error,setError] = useState("");
+  // const [search ,setSearch] = useState("");
+  // const [emergencyMode , setEmergencyMode] = useState(false);
+// const [animatedPos, setAnimatedPos] = useState(null);
   
   const getLocation = () => {
     if(!navigator.geolocation){
@@ -76,12 +73,7 @@ const App = () => {
   const time = distance / speed;
   return (time * 60).toFixed(0); 
   };
-  useEffect(() => {
-    console.log("updated location:",location);
-     if(location && type) {
-      fetchNearbyPlaces();
-    }
-  },[location,type]); 
+   
 
   useEffect(() => {
     if(!location)return;
@@ -193,13 +185,6 @@ const nearestPlace =
   alert("📤 Location copied! Share it with someone.");
 };
   
-  const routePositions =
-  location && nearestPlace
-    ? [
-        [location.lat, location.lng],
-        [nearestPlace.lat, nearestPlace.lon]
-      ]
-    : [];
   
   const handleEmergencyClick = () => {
     if(!location) {
@@ -312,7 +297,6 @@ return (
       
   <MapContainer
   
- 
     center={[location.lat, location.lng]}
     zoom={15}
     style={{ height: "400px", width: "100%", marginTop: "20px" }}>
@@ -388,7 +372,6 @@ return (
         ))}
       </div>
     )}
-    </div>
     </div>
     )}                                                                        
     </>

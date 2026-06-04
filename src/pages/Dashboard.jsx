@@ -1,4 +1,7 @@
-<div className="dashboard-grid">
+import React from 'react';
+const Dashboard = () => {
+  return (
+    <div className="dashboard-grid">
 <div className="card">
     🚑 Ambulance Services
 </div>
@@ -24,3 +27,6 @@
   </div>
   
 </div>
+);
+};
+export default Dashboard;
