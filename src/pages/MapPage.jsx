@@ -342,8 +342,8 @@ const routePositions =
         </MapContainer>
         
       )}
-       {!loading && places.length > 0 && !emergencyMode && (
-         <div>
+       {/* {!loading && places.length > 0 && !emergencyMode && (
+         <div> */}
           {loading && places.length === 0 && !emergencyMode && (
       <p>🔍 Finding nearby help...</p>
     )}
@@ -354,6 +354,8 @@ const routePositions =
         <button onClick={fetchNearbyPlaces}>🔄 Retry</button>
       </div>
     )}
+      {!loading && places.length > 0 && !emergencyMode && (
+        <div>
         <h2>Nearby Results</h2>
         {sortedPlaces.map((place,index) =>(
           <div className='card'
