@@ -38,9 +38,14 @@ const [countryCode, setCountryCode] = useState("+91");
 
   return (
     <div className="login-container">
+      <div className="welcome-panel">
+        <h1>Welcome Back!</h1>
+        <p> Emergency Finder helps you quickly locate nearby hospitals,
+        police stations and fire stations.</p>
+      </div>
       <div className="login-box">
-        <h2>Welcome 👋</h2>
-        <p>Enter your details to continue</p>
+        <h2>Emergency Finder 👋</h2>
+        <p>Find nearby emergency services instantly</p>
 
         <input
           type="text"

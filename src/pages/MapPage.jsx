@@ -38,8 +38,7 @@ const [lastUpdated, setLastUpdated] = useState(null);
     setWatchId(id);
   };
   const getEmergencyNumber = () => {
-    if(type ==="hospital")return "102";
-    if(type ==="police") return "100";
+    if(type ==="hospital")return "102";    if(type ==="police") return "100";
     if(type=== "fire") return "101";
   };
   const getDistance = (lat1 ,lon1 , lat2 ,lon2) => {

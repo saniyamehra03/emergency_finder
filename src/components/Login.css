@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
@@ -46,4 +46,130 @@ body {
 .login-box button:hover {
   background: #ff416c;
   transform: scale(1.05);
+} */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #5b6ee1, #7d8fff);
+  position: relative;
+  overflow: hidden;
+  gap: 50px;
+  padding: 20px;
+}
+
+/* Background circles */
+.login-container::before {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  top: -80px;
+  left: -80px;
+}
+
+.login-container::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  bottom: -50px;
+  right: -50px;
+}
+
+.login-box {
+  background: white;
+  width: 380px;
+  padding: 40px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  z-index: 1;
+}
+
+.login-box h2 {
+  color: #4c63d2;
+  margin-bottom: 10px;
+}
+
+.login-box p {
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.login-box input,
+.phone-input,
+.country-box select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.phone-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.country-box {
+  width: 110px;
+}
+
+.phone-input {
+  flex: 1;
+}
+
+.login-box button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #4c63d2;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-box button:hover {
+  transform: translateY(-2px);
+  background: #3851c7;
+}
+
+.login-box input:focus,
+.phone-input:focus,
+.country-box select:focus {
+  border-color: #4c63d2;
+}
+.welcome-panel {
+  width: 350px;
+  color: white;
+}
+
+.welcome-panel h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.welcome-panel p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.9);
 }
