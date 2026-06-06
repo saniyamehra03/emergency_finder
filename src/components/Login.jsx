@@ -42,8 +42,17 @@ const [countryCode, setCountryCode] = useState("+91");
         <h1>Welcome Back!</h1>
         <p> Emergency Finder helps you quickly locate nearby hospitals,
         police stations and fire stations.</p>
+        <div className="feature-list">
+          <ul>
+            <li>🏥Find nearby hospitals</li>
+            <li>👮Locate police stations</li>
+            <li>🔥Discover fire stations</li>
+            <li>📍 Live Location Tracking</li>
+          </ul>
+        </div>
       </div>
       <div className="login-box">
+        <div className= "logo-circle"></div>
         <h2>Emergency Finder 👋</h2>
         <p>Find nearby emergency services instantly</p>
 
