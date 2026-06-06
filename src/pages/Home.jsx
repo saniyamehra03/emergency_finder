@@ -1,29 +1,23 @@
 import "./Home.css";
-import MapPage from "./MapPage";
 
 function Home() {
-
-
-  // useEffect(() => {
-  //   const savedUser = localStorage.getItem("user");
-
-  //   if (savedUser) {
-  //     setUser(JSON.parse(savedUser));
-  //   }
-  // }, []);
-
   return (
-    
-     <div className="dashboard-title">
-      <h1>🚨Emergency Finder Dashboard</h1>
-      <div className="welcome-card"></div>
-        <h2>Welcome Back 👋</h2>
-  <p>
-    Find nearby hospitals, police stations and
-    fire stations instantly.
-  </p>
-      <MapPage/>
-     </div>
+    <div className="home-container">
+
+      <div className="hero-section">
+        <h1>🚨 Emergency Finder</h1>
+
+        <p>
+          Find nearby hospitals, police stations and
+          fire services instantly when you need help.
+        </p>
+
+        <button className="start-btn">
+          Get Started
+        </button>
+      </div>
+
+    </div>
   );
 }
 

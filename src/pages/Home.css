@@ -1,15 +1,41 @@
-.dashboard-title {
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #5b6ee1, #7d8fff);
   text-align: center;
-  color: #4c63d2;
-  margin-top: 20px;
-}
-.welcome-card {
-  width: 90%;
-  max-width: 900px;
-  margin: 20px auto;
-  background: white;
   padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  text-align: center;
+}
+
+.hero-section {
+  color: white;
+  max-width: 700px;
+}
+
+.hero-section h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 22px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.start-btn {
+  padding: 15px 35px;
+  border: none;
+  border-radius: 12px;
+  background: white;
+  color: #4c63d2;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.start-btn:hover {
+  transform: translateY(-3px);
 }
