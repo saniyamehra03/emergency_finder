@@ -30,6 +30,7 @@ const App = () => {
         <Route path="/nearby" element={<NearbyServices />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
