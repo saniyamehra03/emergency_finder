@@ -1,40 +1,64 @@
 import React from 'react';
+import "./Dashboard.css";
 import { useNavigate } from 'react-router-dom';
 const Dashboard = () => {
   const navigate = useNavigate();
   return (
-    <div className="dashboard-grid">
-<div className="card" 
-onClick={() => navigate("/map")}>
-    🚑 Ambulance Services
-</div>
+    <div className="dashboard">
+       <div className="dashboard-header">
+        <h1>Welcome Back 👋</h1>
+        <p>Always ready anytime & anywhere!</p>
+      </div>
+      <input 
+      className="search-bar"
+      placeholder="Search for emergency services....."
+      />
+  <div className="dashboard-grid">
+<div className="service-card" onClick={() => navigate("/map")}>
+  <div className="service-icon">🚑</div>
 
-<div className="card"
-onClick={() => navigate("/map")}>
-    🚓 Police Stations
-</div>
+  <h3>Ambulance</h3>
 
-<div className="card" 
-onClick ={() => navigate("/map")}>
-    🔥 Fire Stations
+  <p>Nearby hospitals</p>
 </div>
+<div className="service-card" onClick={() => navigate("/map")}>
+  <div className="service-icon">👮</div>
 
-<div className="card" 
-onClick={()=> navigate ("/map")}>
-    🤖 AI Analyzer
+  <h3>Police</h3>
+
+  <p>Police stations</p>
 </div>
+<div className="service-card" onClick={() => navigate("/map")}>
+  <div className="service-icon">🔥</div>
 
- <div className="card"
- onClick ={() => navigate ("/map")}>
-    📍 Nearby Services
-  </div>
+  <h3>Fire</h3>
 
-  <div className="card"
-  onClick={() => navigate ("/map")}>
-    🗺️ Live Map
-  </div>
-  
+  <p>Fire stations</p>
 </div>
-);
-};
+<div className="service-card" onClick={() => navigate("/analyzer")}>
+  <div className="service-icon">🤖</div>
+
+  <h3>AI Analyzer</h3>
+
+  <p>Analyze emergencies</p>
+</div>
+<div className="service-card" onClick={() => navigate("/nearby")}>
+  <div className="service-icon">📍</div>
+
+  <h3>Nearby</h3>
+
+  <p>Nearby services</p>
+</div>
+<div className="service-card" onClick={() => navigate("/map")}>
+  <div className="service-icon">🗺️</div>
+
+  <h3>Live Map</h3>
+
+  <p>Track location</p>
+</div>
+    </div>
+    </div>
+  );
+}
+
 export default Dashboard;
