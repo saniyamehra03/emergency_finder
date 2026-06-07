@@ -19,21 +19,29 @@ import Login from "./components/Login";
 import Header from "./components/Header";
 const App = () => {
   const [user, setUser] = useState(null);
-
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/map" element={<MapPage />} />
-        <Route path="/analyzer" element={<EmergencyAnalyzer />} />
-        <Route path="/nearby" element={<NearbyServices />} />
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
+  </BrowserRouter>
+);
+
+  // return (
+  //   <BrowserRouter>
+  //     <Routes>
+  //       <Route path="/" element={<Home />} />
+  //       <Route path="/dashboard" element={<Dashboard />} />
+  //       <Route path="/map" element={<MapPage />} />
+  //       <Route path="/analyzer" element={<EmergencyAnalyzer />} />
+  //       <Route path="/nearby" element={<NearbyServices />} />
+  //       <Route path="/contacts" element={<Contacts />} />
+  //       <Route path="/profile" element={<Profile />} />
+  //       <Route path="/login" element={<Login />} />
+  //     </Routes>
+  //   </BrowserRouter>
+  // );
 };
 
 export default App;   

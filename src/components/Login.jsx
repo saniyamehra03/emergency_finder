@@ -1,10 +1,12 @@
 import React,{useState} from "react";
 import "./Login.css";
+import{useNavigate} from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { countries } from "./countries";
 const Login = ({onLogin}) => {
-const [countryCode, setCountryCode] = useState("+91");
+  const navigate = useNavigate();
+  const [countryCode, setCountryCode] = useState("+91");
   const [nameError , setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [username, setUsername] = useState("");
@@ -32,10 +34,12 @@ const [countryCode, setCountryCode] = useState("+91");
 
     if (!valid) return;
 
+   if(onLogin){
     onLogin({username, phone});
+   }
     localStorage.setItem("user", JSON.stringify({username, phone}));
+    navigate("/dashboard");
   };
-
   return (
     <div className="login-container">
       <div className="welcome-panel">
