@@ -1,4 +1,5 @@
 import React ,{useState , useEffect} from 'react';
+import { useSearchParams } from "react-router-dom";
 import{  MapContainer,
 TileLayer, Marker,  Popup,Polyline,useMap} from "react-leaflet";
 import L from "leaflet";
@@ -16,6 +17,7 @@ const [animatedPos, setAnimatedPos] = useState(null);
 const [watchId, setWatchId] = useState(null);
 const [emergencyMode, setEmergencyMode] = useState(false);
 const [lastUpdated, setLastUpdated] = useState(null);
+const [searchParams] = useSearchParams();
       const getLocation = () => {
     if(!navigator.geolocation){
       alert("Geolocation is not supported by your browser");
@@ -167,6 +169,13 @@ useEffect(() => {
         }
       };
      }, [watchId]);
+     useEffect(() => {
+  const selectedType = searchParams.get("type");
+
+  if (selectedType) {
+    setType(selectedType);
+  }
+}, []);
 
      const nearestPlace =
   location && places.length > 0

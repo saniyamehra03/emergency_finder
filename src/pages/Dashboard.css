@@ -40,12 +40,12 @@
 
 /* GRID */
 
-.dashboard-grid{
-  width:100%;
-  padding:40px 20px;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:35px;
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 220px);
+  gap: 25px;
+  justify-content: center;
+  margin-top: 40px;
 }
 
 /* SERVICE BUTTON */
