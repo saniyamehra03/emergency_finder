@@ -20,6 +20,10 @@ import Header from "./components/Header";
 const App = () => {
   const [user, setUser] = useState(null);
   return (
+    <>
+    <div className="bg-red-500 text-white p-10">
+  Testing Tailwind
+</div>
   <BrowserRouter>
     <Routes>
        <Route path="/" element={<Home />} />
@@ -27,6 +31,7 @@ const App = () => {
       <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   </BrowserRouter>
+  </>
 );
 
   // return (

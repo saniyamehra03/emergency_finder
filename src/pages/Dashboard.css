@@ -1,164 +1,157 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+/* Main Dashboard */
+
+.dashboard {
+  min-height: 100vh;
+  background: #f5f6fa;
+  font-family: Arial, sans-serif;
 }
 
-.dashboard{
-  min-height:100vh;
-  background:#f5f6fb;
-  padding:40px 20px;
+/* Header */
+
+.top-section {
+  background: #ff1e2d;
+  color: white;
+  padding: 30px 25px 80px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
 }
 
-/* TOP SECTION */
-
-.top-section{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  margin-bottom:50px;
+.dashboard-header {
+  text-align: center;
 }
 
-.dashboard-header{
-  margin-bottom:25px;
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
 }
 
-.dashboard-header h1{
-  font-size:48px;
-  color:#222;
-  margin-bottom:10px;
+.dashboard-header p {
+  margin-top: 8px;
+  font-size: 16px;
+  opacity: 0.95;
 }
 
-.dashboard-header p{
-  font-size:20px;
-  color:#666;
+/* Search */
+
+.search-bar {
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: 25px auto 0;
+  padding: 14px 18px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  font-size: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* SEARCH BAR */
+/* Grid */
 
-.search-bar{
-  width:700px;
-  max-width:90%;
-  padding:18px 20px;
-  border:none;
-  border-radius:15px;
-  outline:none;
-  font-size:16px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+.dashboard-grid {
+  max-width: 900px;
+  margin: -50px auto 40px;
+  padding: 20px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
 }
 
-/* GRID */
+/* Cards */
 
-.dashboard-grid{
-  display:grid;
-  grid-template-columns:repeat(3,250px);
-  gap:30px;
-  justify-content:center;
+.service-card {
+  background: white;
+  border-radius: 25px;
+  padding: 30px 20px;
+  text-align: center;
+  cursor: pointer;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
 }
 
-/* CARD */
-
-.service-card{
-  width:250px;
-  height:220px;
-
-  background:white;
-  border-radius:20px;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-
-  cursor:pointer;
-
-  box-shadow:0 5px 15px rgba(0,0,0,0.08);
-
-  transition:all 0.3s ease;
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
-.service-card:hover{
-  transform:translateY(-8px);
+/* Icon */
+
+.service-icon {
+  width: 75px;
+  height: 75px;
+  background: #f3f4fa;
+  border-radius: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 auto 15px;
+  font-size: 35px;
 }
 
-/* ICON */
+/* Text */
 
-.service-icon{
-  width:70px;
-  height:70px;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  background:#eef2ff;
-  border-radius:18px;
-
-  font-size:35px;
-
-  margin-bottom:15px;
+.service-card h3 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
 }
 
-.service-card h3{
-  color:#222;
-  margin-bottom:10px;
+.service-card p {
+  margin-top: 10px;
+  color: #666;
+  font-size: 15px;
 }
 
-.service-card p{
-  color:#666;
-  text-align:center;
-}
+/* AI Card */
 
-/* AI CARD */
-
-.ai-card{
-  background:linear-gradient(
+.ai-card {
+  background: linear-gradient(
     135deg,
-    #5B6CF8,
-    #7A4DE8
+    #6c63ff,
+    #8b5cf6
   );
+  color: white;
 }
 
 .ai-card h3,
-.ai-card p{
-  color:white;
+.ai-card p {
+  color: white;
 }
 
-/* MOBILE */
+/* Mobile */
 
-@media(max-width:900px){
+@media (max-width: 768px) {
 
-  .dashboard-header h1{
-    font-size:36px;
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
   }
 
-  .dashboard-header p{
-    font-size:16px;
+  .service-card {
+    padding: 20px 10px;
   }
 
-  .dashboard-grid{
-    grid-template-columns:repeat(2,220px);
+  .service-card h3 {
+    font-size: 18px;
   }
 
-  .service-card{
-    width:220px;
-  }
-}
-
-@media(max-width:600px){
-
-  .dashboard-grid{
-    grid-template-columns:1fr;
+  .service-card p {
+    font-size: 13px;
   }
 
-  .service-card{
-    width:100%;
-    max-width:300px;
-    margin:auto;
+  .service-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
   }
 
-  .search-bar{
-    width:95%;
+  .dashboard-header h1 {
+    font-size: 28px;
   }
 }

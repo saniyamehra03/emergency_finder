@@ -7,10 +7,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-
-      {/* Top Section */}
       <div className="top-section">
-
         <div className="dashboard-header">
           <h1>Welcome Back 👋</h1>
           <p>Always ready anytime & anywhere!</p>
@@ -20,10 +17,7 @@ const Dashboard = () => {
           className="search-bar"
           placeholder="Search for emergency services..."
         />
-
       </div>
-
-      {/* Service Cards */}
       <div className="dashboard-grid">
 
         <div
