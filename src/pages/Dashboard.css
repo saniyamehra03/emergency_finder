@@ -1,4 +1,42 @@
+:root{
+  --radius: 18px;
+  --radius-lg: 24px;
 
+  --bg: #f5f6fb;
+  --bg-2: #ffffff;
+
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --surface-3: #eef2f7;
+
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+
+  --text: #1f2937;
+  --text-dim: #6b7280;
+  --text-faint: #9ca3af;
+
+  --red: #ef4444;
+  --red-soft: #fee2e2;
+
+  --blue: #3b82f6;
+  --blue-soft: #dbeafe;
+
+  --green: #22c55e;
+  --green-soft: #dcfce7;
+
+  --amber: #f59e0b;
+  --amber-soft: #fef3c7;
+
+  --indigo-soft: #e0e7ff;
+
+  --glass: rgba(255,255,255,0.4);
+
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow: 0 10px 25px rgba(0,0,0,0.12);
+
+  --red-glow: rgba(239,68,68,0.35);
+}
 .dash {
   display: flex;
   flex-direction: column;
@@ -127,7 +165,7 @@
 }
 .stat-value {
   font-size: 28px;
-  color: #f8fafc;
+  color: var(--text);
   line-height: 1.1;
   margin: 2px 0;
 }
@@ -202,7 +240,7 @@
 .quick-title {
   font-size: 16.5px;
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--text);
 }
 .quick-desc {
   font-size: 13px;
@@ -273,7 +311,7 @@
 }
 .count-value {
   font-size: 20px;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 /* ---------- Location + contacts ---------- */
@@ -291,7 +329,7 @@
 }
 .location-banner strong {
   font-size: 14.5px;
-  color: #f1f5f9;
+  color: var(--text);
 }
 .location-banner span {
   font-size: 12.5px;
