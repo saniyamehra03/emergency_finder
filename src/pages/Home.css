@@ -38,4 +38,108 @@
 
 .start-btn:hover {
   transform: translateY(-3px);
+}.home-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(900px 500px at 80% -10%, rgba(99, 102, 241, 0.16), transparent 60%),
+    radial-gradient(900px 500px at 10% 110%, rgba(239, 68, 68, 0.16), transparent 60%),
+    var(--bg);
+}
+
+.home-hero {
+  max-width: 720px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  animation: fadeUp 0.5s ease both;
+}
+
+.home-mark {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--red), #b91c1c);
+  box-shadow: 0 12px 30px var(--red-glow);
+}
+
+.home-pill {
+  color: var(--text-dim);
+  background: var(--glass);
+  border-color: var(--glass-border);
+}
+
+.home-hero h1 {
+  font-size: 52px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.home-hero p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  max-width: 600px;
+}
+
+.start-btn {
+  margin-top: 6px;
+  padding: 15px 36px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--red), #b91c1c);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 26px var(--red-glow);
+  transition: transform 0.2s ease;
+}
+.start-btn:hover {
+  transform: translateY(-3px);
+}
+
+.home-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+.home-feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 18px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.home-feature span {
+  display: grid;
+  place-items: center;
+}
+.home-feature--red span { color: var(--red); }
+.home-feature--blue span { color: var(--blue); }
+.home-feature--amber span { color: var(--amber); }
+.home-feature--green span { color: var(--green); }
+
+@media (max-width: 560px) {
+  .home-hero h1 {
+    font-size: 36px;
+  }
+  .home-hero p {
+    font-size: 15px;
+  }
 }

@@ -1,0 +1,274 @@
+/* =========================================================
+   Live Map page
+========================================================= */
+
+.map-page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* ---------- Toolbar ---------- */
+.map-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.service-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.service-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 20px;
+  border-radius: 14px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-dim);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+.service-tab:hover {
+  transform: translateY(-2px);
+  color: var(--text);
+}
+.service-tab--red.is-active {
+  background: var(--red-soft);
+  color: #fff;
+  border-color: rgba(239, 68, 68, 0.45);
+}
+.service-tab--red.is-active svg { color: var(--red); }
+.service-tab--blue.is-active {
+  background: var(--blue-soft);
+  color: #fff;
+  border-color: rgba(59, 130, 246, 0.45);
+}
+.service-tab--blue.is-active svg { color: var(--blue); }
+.service-tab--amber.is-active {
+  background: var(--amber-soft);
+  color: #fff;
+  border-color: rgba(245, 158, 11, 0.45);
+}
+.service-tab--amber.is-active svg { color: var(--amber); }
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+.share-btn:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+/* ---------- Search ---------- */
+.map-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.map-search svg {
+  color: var(--text-faint);
+}
+.map-search input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 14.5px;
+}
+.map-search input::placeholder {
+  color: var(--text-faint);
+}
+
+/* ---------- States ---------- */
+.map-empty,
+.map-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 56px 24px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px dashed var(--border-strong);
+  color: var(--text-dim);
+}
+.map-empty svg {
+  color: var(--text-faint);
+}
+.map-empty h3 {
+  font-size: 18px;
+}
+.map-empty p {
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.map-error {
+  border-color: rgba(239, 68, 68, 0.4);
+  color: var(--red);
+}
+.map-error button {
+  margin-top: 4px;
+  padding: 10px 22px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  color: #fff;
+  background: var(--red);
+}
+
+.spinner {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid var(--surface-3);
+  border-top-color: var(--red);
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Map shell ---------- */
+.map-shell {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.leaflet-container {
+  background: var(--surface-2);
+}
+
+/* ---------- Results ---------- */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.result-card {
+  position: relative;
+  padding: 18px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all 0.22s ease;
+}
+.result-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+}
+.result-card--nearest {
+  border-color: rgba(34, 197, 94, 0.45);
+  background: linear-gradient(135deg, var(--green-soft), var(--surface));
+}
+.nearest-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--green);
+  background: var(--green-soft);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.result-card h4 {
+  font-size: 15.5px;
+  margin-bottom: 12px;
+  padding-right: 60px;
+}
+.result-meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.result-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.result-meta svg {
+  color: var(--text-faint);
+}
+.result-actions {
+  display: flex;
+  gap: 10px;
+}
+.result-call,
+.result-route {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px;
+  border-radius: 11px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+.result-call:hover,
+.result-route:hover {
+  transform: translateY(-2px);
+}
+.result-call {
+  color: #fff;
+  background: linear-gradient(135deg, var(--red), #b91c1c);
+}
+.result-route {
+  color: var(--blue);
+  background: var(--blue-soft);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* Tighten leaflet routing panel for dark theme */
+.leaflet-routing-container {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-radius: 12px;
+}
+
+@media (max-width: 560px) {
+  .service-tab {
+    flex: 1;
+    justify-content: center;
+    padding: 12px 10px;
+  }
+  .share-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

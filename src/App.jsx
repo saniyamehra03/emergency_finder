@@ -1,51 +1,67 @@
 import "./App.css";
-import { BrowserRouter ,Routes,Route } from "react-router-dom";
-import React,{useState,useEffect} from 'react';
-import Home from"./pages/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import EmergencyAnalyzer from "./pages/EmergencyAnalyzer";
 import MapPage from "./pages/MapPage";
 import NearbyServices from "./pages/NearbyServices";
-import Contacts from "./pages/Contacts";
-import Profile from "./pages/Profile";
-import EmergencyCard from "./components/EmergencyCard";
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-
-import { Polyline } from "react-leaflet";
-import { useMap } from "react-leaflet";
-import Heading from './components/Heading';
 import Login from "./components/Login";
-import Header from "./components/Header";
-const App = () => {
-  const [user, setUser] = useState(null);
-  return (
-    <>
-  
-  <BrowserRouter>
-    <Routes>
-       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Routes>
-  </BrowserRouter>
-  </>
-);
+import Layout from "./components/Layout";
 
-  // return (
-  //   <BrowserRouter>
-  //     <Routes>
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
         <Route path="/" element={<Home />} />
-  //       <Route path="/dashboard" element={<Dashboard />} />
-  //       <Route path="/map" element={<MapPage />} />
-  //       <Route path="/analyzer" element={<EmergencyAnalyzer />} />
-  //       <Route path="/nearby" element={<NearbyServices />} />
-  //       <Route path="/contacts" element={<Contacts />} />
-  //       <Route path="/profile" element={<Profile />} />
-  //       <Route path="/login" element={<Login />} />
-  //     </Routes>
-  //   </BrowserRouter>
-  // );
+        <Route path="/login" element={<Login />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <Layout
+              title="Dashboard"
+              subtitle="Emergency Command Center overview"
+            >
+              <Dashboard />
+            </Layout>
+          }
+        />
+        <Route
+          path="/nearby"
+          element={
+            <Layout
+              title="Nearby Services"
+              subtitle="Emergency services within 5 km"
+            >
+              <NearbyServices />
+            </Layout>
+          }
+        />
+        <Route
+          path="/map"
+          element={
+            <Layout
+              title="Live Map"
+              subtitle="Real-time location and routing"
+            >
+              <MapPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/analyzer"
+          element={
+            <Layout
+              title="AI Emergency Analyzer"
+              subtitle="Smart incident classification"
+            >
+              <EmergencyAnalyzer />
+            </Layout>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
-export default App;   
+export default App;
