@@ -85,7 +85,6 @@ const Dashboard = () => {
       const stored = JSON.parse(localStorage.getItem("user"));
       if (stored) setUser(stored);
     } catch {
-      /* ignore */
     }
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -172,7 +171,7 @@ const Dashboard = () => {
       </section>
       <section className="dash-section">
         <div className="section-head">
-          <h3>Quick Access</h3>
+         <h3>QUICK ACCESS</h3>
           <span>Tap a service to get help instantly</span>
         </div>
         <div className="quick-grid">
@@ -182,6 +181,7 @@ const Dashboard = () => {
               className={`quick-card quick-card--${tone}`}
               onClick={() => navigate(route)}
             >
+               <span className="card-arrow">↗</span>
               <span className="quick-icon">
                 <Icon size={26} />
               </span>
