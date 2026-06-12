@@ -66,6 +66,7 @@ const Login = ({onLogin}) => {
   <p className="setup-subtitle">
     Enter your details to find nearby emergency services instantly.
   </p>
+ <label className="input-label">Full name</label>
         <input
           type="text"
           placeholder="Enter your name"
@@ -73,6 +74,7 @@ const Login = ({onLogin}) => {
           onChange={(e) => setUsername(e.target.value)}
         />
         {nameError && <p style={{ color: "red" }}>{nameError}</p>}
+        <label className="input-label">Phone Number</label>
 
       <div className="phone-container">
 
