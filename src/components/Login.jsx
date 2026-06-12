@@ -60,9 +60,10 @@ const Login = ({onLogin}) => {
         </div>
       </div>
       <div className="login-box">
-        <p>Let's get you set up</p>
+        <div className="login-box-content"></div>
+        <h2 className="setup-title">Let's get you set up</h2>
 
-  <p>
+  <p className="setup-subtitle">
     Enter your details to find nearby emergency services instantly.
   </p>
         <input
