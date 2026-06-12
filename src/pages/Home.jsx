@@ -26,7 +26,7 @@ function Home() {
         </span>
         <span className="pill home-pill">
           <span className="live-dot" />
-          Emergency Command Center
+          Emergency Finder
         </span>
         <h1>Find emergency help in seconds</h1>
         <p>

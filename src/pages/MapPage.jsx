@@ -306,7 +306,6 @@ const MapPage = () => {
 
   return (
     <div className="map-page">
-      {/* Service selector */}
       <div className="map-toolbar">
         <div className="service-tabs">
           <button
@@ -365,8 +364,6 @@ const MapPage = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-
-      {/* Status states */}
       {!type && (
         <div className="map-empty">
           <PinIcon size={40} />
@@ -389,8 +386,6 @@ const MapPage = () => {
           <button onClick={fetchNearbyPlaces}>Retry</button>
         </div>
       )}
-
-      {/* Map */}
       {location && places.length > 0 && !emergencyMode && (
         <div className="map-shell">
           <MapContainer
@@ -433,8 +428,6 @@ const MapPage = () => {
           </MapContainer>
         </div>
       )}
-
-      {/* Results list */}
       {!loading && places.length > 0 && !emergencyMode && (
         <div className="results">
           <div className="section-head">

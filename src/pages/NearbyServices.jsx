@@ -120,7 +120,6 @@ const NearbyServices = () => {
 
   return (
     <div className="nearby">
-      {/* Summary counts */}
       <section className="nearby-counts">
         <div className="ncount ncount--red">
           <span className="ncount-icon"><AmbulanceIcon size={22} /></span>
@@ -144,8 +143,6 @@ const NearbyServices = () => {
           </div>
         </div>
       </section>
-
-      {/* Filters */}
       <section className="nearby-controls">
         <div className="filter-tabs">
           {categories.map((c) => (
@@ -167,8 +164,6 @@ const NearbyServices = () => {
           />
         </div>
       </section>
-
-      {/* States */}
       {loading && (
         <div className="nearby-state">
           <span className="spinner" />
@@ -191,8 +186,6 @@ const NearbyServices = () => {
           <p>Try a different category or widen your search.</p>
         </div>
       )}
-
-      {/* Results */}
       {!loading && visible.length > 0 && (
         <section className="nearby-grid">
           {visible.map((place, i) => {

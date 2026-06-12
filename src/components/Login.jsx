@@ -43,6 +43,10 @@ const Login = ({onLogin}) => {
   return (
     <div className="login-container">
       <div className="welcome-panel">
+         <div className="brand">
+    <div className="brand-logo">🛡️</div>
+    <span>EmergencyFinder</span>
+      </div>
         <h1>Welcome Back!</h1>
         <p> Emergency Finder helps you quickly locate nearby hospitals,
         police stations and fire stations.</p>
@@ -56,10 +60,11 @@ const Login = ({onLogin}) => {
         </div>
       </div>
       <div className="login-box">
-        <div className= "logo-circle"></div>
-        <h2>Emergency Finder 👋</h2>
-        <p>Find nearby emergency services instantly</p>
+        <p>Let's get you set up</p>
 
+  <p>
+    Enter your details to find nearby emergency services instantly.
+  </p>
         <input
           type="text"
           placeholder="Enter your name"

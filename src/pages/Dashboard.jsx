@@ -140,7 +140,6 @@ const Dashboard = () => {
 
   return (
     <div className="dash">
-      {/* Welcome + search hero */}
       <section className="dash-hero">
         <div className="dash-hero-text">
           <span className="pill dash-hero-pill">
@@ -162,7 +161,6 @@ const Dashboard = () => {
         </form>
       </section>
 
-      {/* Stat widgets */}
       <section className="dash-stats">
         {stats.map(({ label, value, hint, icon: Icon, tone }) => (
           <div key={label} className={`stat-card stat-card--${tone}`}>
@@ -177,8 +175,6 @@ const Dashboard = () => {
           </div>
         ))}
       </section>
-
-      {/* Quick access cards */}
       <section className="dash-section">
         <div className="section-head">
           <h3>Quick Access</h3>
@@ -200,8 +196,6 @@ const Dashboard = () => {
           ))}
         </div>
       </section>
-
-      {/* Lower grid: nearby counts + location/contacts */}
       <section className="dash-lower">
         <div className="panel">
           <div className="section-head">

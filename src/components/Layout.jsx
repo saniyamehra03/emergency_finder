@@ -32,7 +32,6 @@ const Layout = ({ children, title, subtitle }) => {
       const stored = JSON.parse(localStorage.getItem("user"));
       if (stored) setUser(stored);
     } catch {
-      /* ignore */
     }
   }, []);
 
@@ -47,8 +46,6 @@ const Layout = ({ children, title, subtitle }) => {
       { timeout: 8000 }
     );
   }, []);
-
-  // close drawer on route change (mobile)
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
@@ -69,7 +66,7 @@ const Layout = ({ children, title, subtitle }) => {
           </span>
           <div className="brand-text">
             <strong>Emergency</strong>
-            <span>Command Center</span>
+            <span>finder</span>
           </div>
         </div>
 
