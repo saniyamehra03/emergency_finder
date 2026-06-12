@@ -142,10 +142,6 @@ const Dashboard = () => {
     <div className="dash">
       <section className="dash-hero">
         <div className="dash-hero-text">
-          <span className="pill dash-hero-pill">
-            <span className="live-dot" />
-            System Online
-          </span>
           <h2>Welcome back, {user?.username || "Responder"}</h2>
           <p>Always ready, anytime and anywhere. Find help in seconds.</p>
         </div>
@@ -157,7 +153,6 @@ const Dashboard = () => {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for hospitals, police, fire stations..."
           />
-          <button type="submit">Search</button>
         </form>
       </section>
 

@@ -66,7 +66,7 @@ const Login = ({onLogin}) => {
   <p className="setup-subtitle">
     Enter your details to find nearby emergency services instantly.
   </p>
- <label className="input-label">Full name</label>
+ <label className="input-label">Full Name</label>
         <input
           type="text"
           placeholder="Enter your name"
@@ -109,10 +109,14 @@ const Login = ({onLogin}) => {
         {phoneError && <p style={{ color: "red" }}>{phoneError}</p>}
 
         <button onClick={handleSubmit}>
-          Continue
+          Continue <span>➜</span>
         </button>
+        <p className="location-note">
+  By continuing, you agree to share your location to find nearby help.
+    </p>
       </div>
     </div>
+
   );
 };
 export default Login;
