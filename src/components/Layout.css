@@ -232,19 +232,24 @@
   color: var(--text);
   place-items: center;
 }
-
 .topbar-titles {
-  flex: 1;
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
+
 .topbar-titles h1 {
-  font-size: 22px;
   margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.2;
 }
 .topbar-titles p {
-  color: var(--text-dim);
-  font-size: 13.5px;
-  margin: 2px 0 0;
+  margin: 0;
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 400;
 }
 
 .sos-pill {

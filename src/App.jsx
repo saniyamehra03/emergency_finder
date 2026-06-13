@@ -21,7 +21,7 @@ const App = () => {
           element={
             <Layout
               title="Dashboard"
-              subtitle="Emergency Command Center overview"
+              subtitle="Your emergency response and assistance dashboard"
             >
               <Dashboard />
             </Layout>
