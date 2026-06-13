@@ -36,8 +36,6 @@
   font-size: 14.5px;
   max-width: 620px;
 }
-
-/* ---------- Grid ---------- */
 .analyzer-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -129,8 +127,6 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
-
-/* ---------- Result ---------- */
 .result-empty {
   display: flex;
   flex-direction: column;

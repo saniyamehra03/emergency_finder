@@ -66,12 +66,11 @@ const Layout = ({ children, title, subtitle }) => {
           </span>
           <div className="brand-text">
             <strong>Emergency</strong>
-            <span>finder</span>
+            <span>Finder</span>
           </div>
         </div>
 
         <nav className="sidebar-nav">
-          <p className="nav-label">Navigation</p>
           {navItems.map(({ to, label, icon: Icon, accent }) => (
             <NavLink
               key={to}

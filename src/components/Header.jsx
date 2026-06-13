@@ -26,5 +26,4 @@ const Header = ({ user, location, lastUpdated, onLogout }) => {
     </div>
   );
 };
-
 export default Header;

@@ -7,7 +7,8 @@ import MapPage from "./pages/MapPage";
 import NearbyServices from "./pages/NearbyServices";
 import Login from "./components/Login";
 import Layout from "./components/Layout";
-
+import Contacts from "./pages/Contacts";
+import Profile from "./pages/Profile";
 const App = () => {
   return (
     <BrowserRouter>
@@ -59,6 +60,23 @@ const App = () => {
             </Layout>
           }
         />
+        <Route 
+        path="/contacts"
+        element={
+          <Layout
+          title="Contacts">
+            <Contacts/>
+          </Layout>
+        }
+        />
+        <Route
+        path="/profile"
+        element={
+      <Layout title="Profile">
+        <Profile />
+       </Layout>
+      }
+      />
       </Routes>
     </BrowserRouter>
   );
