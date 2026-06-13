@@ -1,0 +1,53 @@
+.profile-page {
+  padding: 20px;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#ef4444,#dc2626);
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.profile-card h2 {
+  margin-top: 15px;
+}
+
+.profile-info {
+  margin-top: 30px;
+  display: grid;
+  gap: 15px;
+}
+
+.info-box {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.info-box label {
+  display: block;
+  color: #6b7280;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.info-box span {
+  font-size: 16px;
+  font-weight: 600;
+}

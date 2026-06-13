@@ -10,6 +10,8 @@ import {
   MenuIcon,
   CloseIcon,
   SignalIcon,
+  PhoneIcon,
+  UserIcon,
 } from "./Icons";
 import "./Layout.css";
 
@@ -18,6 +20,8 @@ const navItems = [
   { to: "/nearby", label: "Nearby Services", icon: PinIcon },
   { to: "/map", label: "Live Map", icon: MapIcon },
   { to: "/analyzer", label: "AI Analyzer", icon: AiIcon, accent: true },
+  {to:"/contacts",label:"Contacts",icon:PhoneIcon},
+  { to: "/profile", label: "Profile", icon: UserIcon },
 ];
 
 const Layout = ({ children, title, subtitle }) => {

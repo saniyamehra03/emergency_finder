@@ -152,3 +152,9 @@ export const ShieldLogo = ({ size = 26 }) => (
     <path d="M9.5 12l1.8 1.8L15 10" />
   </svg>
 );
+export const UserIcon = ({ size = 22 }) => (
+  <svg {...base(size)}>
+    <circle cx="12" cy="8" r="4" />
+    <path d="M5 20c0-4 3-6 7-6s7 2 7 6" />
+  </svg>
+);

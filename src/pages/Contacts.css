@@ -1,0 +1,52 @@
+.contacts-page {
+  padding: 20px;
+}
+
+.page-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.page-card h2 {
+  margin-bottom: 8px;
+}
+
+.page-card p {
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 20px;
+}
+
+.contact-card {
+  text-decoration: none;
+  color: inherit;
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: 0.3s;
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+}
+
+.contact-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+}
