@@ -21,7 +21,7 @@ const EmergencyAnalyzer = () => {
   const navigate = useNavigate();
   const [incident, setIncident] = useState("");
   const [aiResult, setAiResult] = useState(null);
-
+const ResultIcon = aiResult?.Icon;
   const analyzeEmergency = (textInput) => {
     const text = (textInput ?? incident).toLowerCase();
     if (!text.trim()) return;
@@ -93,21 +93,28 @@ const EmergencyAnalyzer = () => {
       });
     }
   };
-
+  
   return (
-    <div className="analyzer">
-      <section className="analyzer-intro glass">
-        <span className="analyzer-badge">
-          <AiIcon size={18} />
-          AI Powered
-        </span>
-        <h2>Describe the emergency</h2>
+    <div className="analyzer-page">
+
+      <section className="analyzer-hero">
+      <div className="hero-left" >
+    <div className="ai-badge">✨ AI Powered</div>
+      <h2>Describe the emergency</h2>
         <p>
           Our analyzer reads your description, classifies the emergency type and
           severity, and guides you to the right help instantly.
         </p>
-      </section>
-
+        </div>
+         <div className="hero-right">
+            <img
+         src="/robot.jpg"
+         alt="AI Analyzer"
+         className="hero-image"
+         />
+        </div>
+        </section>
+        
       <section className="analyzer-grid">
         <div className="analyzer-input-panel">
           <label htmlFor="incident">Incident description</label>
@@ -118,7 +125,6 @@ const EmergencyAnalyzer = () => {
             placeholder="e.g. A car accident with an injured person who is bleeding..."
             rows={6}
           />
-
           <div className="analyzer-examples">
             <span>Try an example:</span>
             <div>
@@ -150,15 +156,20 @@ const EmergencyAnalyzer = () => {
         <div className="analyzer-result-panel">
           {!aiResult ? (
             <div className="result-empty">
-              <AiIcon size={40} />
+              <img
+               src="/ai.jpg"
+               alt="AI"
+               className="empty-image"
+              />
               <h3>Awaiting analysis</h3>
               <p>Describe an incident to receive instant guidance.</p>
             </div>
           ) : (
+
             <div className={`result-card result-card--${aiResult.tone}`}>
               <div className="result-top">
                 <span className="result-icon">
-                  <aiResult.Icon size={24} />
+                <ResultIcon size={24} />
                 </span>
                 <div>
                   <h3>{aiResult.type}</h3>
@@ -188,6 +199,7 @@ const EmergencyAnalyzer = () => {
             </div>
           )}
         </div>
+        
       </section>
     </div>
   );

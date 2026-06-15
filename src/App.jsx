@@ -64,7 +64,8 @@ const App = () => {
         path="/contacts"
         element={
           <Layout
-          title="Contacts">
+          title="Contacts" 
+          subtitle="Quick access to important emergency numbers">
             <Contacts/>
           </Layout>
         }
@@ -72,7 +73,8 @@ const App = () => {
         <Route
         path="/profile"
         element={
-      <Layout title="Profile">
+      <Layout title="Profile"
+       subtitle="Manage your account and personal information">
         <Profile />
        </Layout>
       }

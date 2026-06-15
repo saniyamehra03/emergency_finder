@@ -58,7 +58,12 @@
   flex-direction: column;
   gap: 22px;
 }
-
+.dashboard-welcome p{
+  color:#ef4444;
+  font-size:16px;
+  font-weight:600;
+  margin-top:4px;
+}
 .dash-hero-pill {
   color: var(--green);
   background: var(--green-soft);

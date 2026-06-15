@@ -6,8 +6,6 @@
   max-width: 1180px;
   margin: 0 auto;
 }
-
-/* ---------- Counts ---------- */
 .nearby-counts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -28,12 +26,14 @@
 }
 .ncount strong {
   font-size: 26px;
-  color: #f8fafc;
+  color: hwb(342 68% 7%);
   line-height: 1;
 }
 .ncount span {
-  font-size: 13px;
-  color: var(--text-dim);
+  font-size: 15px;
+  color: rgb(134, 31, 31);
+  font-weight: 500;
+
 }
 .ncount-icon {
   width: 50px;
@@ -42,12 +42,12 @@
   display: grid;
   place-items: center;
   flex-shrink: 0;
+  
 }
 .ncount--red .ncount-icon { background: var(--red-soft); color: var(--red); }
 .ncount--blue .ncount-icon { background: var(--blue-soft); color: var(--blue); }
 .ncount--amber .ncount-icon { background: var(--amber-soft); color: var(--amber); }
 
-/* ---------- Controls ---------- */
 .nearby-controls {
   display: flex;
   align-items: center;
@@ -102,7 +102,7 @@
 }
 .nearby-search input::placeholder { color: var(--text-faint); }
 
-/* ---------- States ---------- */
+
 .nearby-state {
   display: flex;
   flex-direction: column;
@@ -132,7 +132,6 @@
   background: var(--red);
 }
 
-/* ---------- Grid ---------- */
 .nearby-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));

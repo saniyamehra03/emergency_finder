@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
+
 import {
   AmbulanceIcon,
   PoliceIcon,
@@ -142,6 +143,7 @@ const Dashboard = () => {
       <section className="dash-hero">
         <div className="dash-hero-text">
           <h2>Welcome back, {user?.username || "Responder"}</h2>
+           <p>Stay Safe ❤️</p>
           <p>Always ready, anytime and anywhere. Find help in seconds.</p>
         </div>
 

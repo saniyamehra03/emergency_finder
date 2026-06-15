@@ -36,7 +36,7 @@
   border-radius: 13px;
   display: grid;
   place-items: center;
-  color: #fff;
+  color: #500e0e;
   background: linear-gradient(135deg, var(--red), #b91c1c);
   box-shadow: 0 8px 20px var(--red-glow);
 }
@@ -163,7 +163,7 @@
   display: grid;
   place-items: center;
   font-weight: 700;
-  color: #fff;
+  color: #5c1010;
   background: linear-gradient(135deg, var(--blue), var(--indigo));
   flex-shrink: 0;
 }
@@ -176,7 +176,7 @@
 }
 .user-meta strong {
   font-size: 13.5px;
-  color: #f1f5f9;
+  color: #1c5d99;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -243,13 +243,13 @@
   margin: 0;
   font-size: 30px;
   font-weight: 700;
-  color: #f8fafc;
+  color: #ff0000a9;
   line-height: 1.2;
 }
 .topbar-titles p {
   margin: 0;
   font-size: 14px;
-  color: #94a3b8;
+  color: #c4d0e0;
   font-weight: 400;
 }
 
