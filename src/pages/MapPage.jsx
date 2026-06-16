@@ -39,6 +39,8 @@ const MapPage = () => {
   const [searchParams] = useSearchParams();
 
   const getLocation = () => {
+      console.log("getLocation called");
+
     if (!navigator.geolocation) {
       alert("Geolocation is not supported by your browser");
       return;
@@ -47,6 +49,12 @@ const MapPage = () => {
     const id = navigator.geolocation.watchPosition(
       (position) => {
         console.log("Received Location Sucessfully");
+        console.log(
+      "LAT:",
+       position.coords.latitude,
+      "LNG:",
+       position.coords.longitude
+      ); 
         setLocation({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
@@ -54,7 +62,8 @@ const MapPage = () => {
         setLastUpdated(new Date());
       },
       (error) => {
-        console.log("Error:", error.message);
+         console.log("Location Error Code:", error.code);
+      console.log("Location Error Message:", error.message);
       }
     );
     setWatchId(id);
@@ -113,6 +122,7 @@ const MapPage = () => {
       }
       const data = await response.json();
       console.log("API:", data);
+      console.log("Places Found:", data.elements);
       setPlaces(data.elements || []);
     } catch (err) {
       console.error("Error:", err);
@@ -248,6 +258,7 @@ const MapPage = () => {
         return distA - distB;
       })
     : [];
+    console.log("Sorted Places:", sortedPlaces);
 
   const userIcon = new L.Icon({
     iconUrl: "https://cdn-icons-png.flaticon.com/512/64/64113.png",
@@ -388,6 +399,7 @@ const MapPage = () => {
       )}
       {location && places.length > 0 && !emergencyMode && (
         <div className="map-shell">
+          <p>Places Found: {sortedPlaces.length}</p>
           <MapContainer
             center={[location.lat, location.lng]}
             zoom={15}
@@ -404,10 +416,11 @@ const MapPage = () => {
             >
               <Popup>You are here</Popup>
             </Marker>
-            {location && nearestPlace && (
+            {/* {location && nearestPlace && (
               <Routing location={location} nearestPlace={nearestPlace} />
-            )}
+            )} */}
             {routePositions.length > 0 && <Polyline positions={routePositions} />}
+            console.log("First Place:", sortedPlaces[0]);
             {sortedPlaces.map((place, index) => (
               <Marker
                 key={index}

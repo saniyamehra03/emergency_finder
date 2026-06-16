@@ -241,16 +241,18 @@
 
 .topbar-titles h1 {
   margin: 0;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: 700;
   color: #ff0000a9;
   line-height: 1.2;
+  text-align: left;
 }
 .topbar-titles p {
   margin: 0;
-  font-size: 14px;
+  font-size: 18px;
   color: #c4d0e0;
   font-weight: 400;
+  text-align: left;
 }
 
 .sos-pill {
