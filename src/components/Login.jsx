@@ -103,11 +103,9 @@ const Login = ({onLogin}) => {
       }
     }}
   />
-
 </div>
 
         {phoneError && <p style={{ color: "red" }}>{phoneError}</p>}
-
         <button onClick={handleSubmit}>
           Continue <span>➜</span>
         </button>

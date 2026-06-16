@@ -416,9 +416,7 @@ const MapPage = () => {
             >
               <Popup>You are here</Popup>
             </Marker>
-            {/* {location && nearestPlace && (
-              <Routing location={location} nearestPlace={nearestPlace} />
-            )} */}
+        
             {routePositions.length > 0 && <Polyline positions={routePositions} />}
             console.log("First Place:", sortedPlaces[0]);
             {sortedPlaces.map((place, index) => (

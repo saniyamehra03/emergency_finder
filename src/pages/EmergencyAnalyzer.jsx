@@ -9,7 +9,6 @@ import {
   RouteIcon,
 } from "../components/Icons";
 import "./EmergencyAnalyzer.css";
-
 const examples = [
   "Someone is bleeding after a road accident",
   "There is smoke and fire in the building",
@@ -21,11 +20,14 @@ const EmergencyAnalyzer = () => {
   const navigate = useNavigate();
   const [incident, setIncident] = useState("");
   const [aiResult, setAiResult] = useState(null);
+  const [loading, setLoading] = useState(false);
 const ResultIcon = aiResult?.Icon;
+
   const analyzeEmergency = (textInput) => {
     const text = (textInput ?? incident).toLowerCase();
     if (!text.trim()) return;
-
+     setLoading(true); 
+      setTimeout(() => {
     if (
       text.includes("bleeding") ||
       text.includes("accident") ||
@@ -92,7 +94,9 @@ const ResultIcon = aiResult?.Icon;
         call: "112",
       });
     }
-  };
+    setLoading(false);
+  },1500);
+};
   
   return (
     <div className="analyzer-page">
@@ -105,6 +109,32 @@ const ResultIcon = aiResult?.Icon;
           Our analyzer reads your description, classifies the emergency type and
           severity, and guides you to the right help instantly.
         </p>
+       <div className="hero-features">
+
+  <div className="feature-card">
+    <div className="feature-icon">🧠</div>
+    <div>
+      <h4>Smart Analysis</h4>
+      <p>AI detects severity and type</p>
+    </div>
+  </div>
+
+  <div className="feature-card">
+    <div className="feature-icon">⚡</div>
+    <div>
+      <h4>Instant Guidance</h4>
+      <p>Get actionable steps immediately</p>
+    </div>
+  </div>
+
+  <div className="feature-card">
+    <div className="feature-icon">🛡️</div>
+    <div>
+      <h4>Stay Safe</h4>
+      <p>Accurate help when needed most</p>
+    </div>
+  </div>
+</div>
         </div>
          <div className="hero-right">
             <img
@@ -117,7 +147,19 @@ const ResultIcon = aiResult?.Icon;
         
       <section className="analyzer-grid">
         <div className="analyzer-input-panel">
-          <label htmlFor="incident">Incident description</label>
+      <div className="input-header">
+  <div className="input-icon">
+    📝
+  </div>
+
+  <div>
+    <h3>Incident Description</h3>
+    <p>
+      Tell us what happened and AI will
+      recommend the right emergency service.
+    </p>
+  </div>
+</div>
           <textarea
             id="incident"
             value={incident}
@@ -125,6 +167,9 @@ const ResultIcon = aiResult?.Icon;
             placeholder="e.g. A car accident with an injured person who is bleeding..."
             rows={6}
           />
+          <div className="input-tip">
+            💡 Be specific for better analysis
+         </div>
           <div className="analyzer-examples">
             <span>Try an example:</span>
             <div>
@@ -146,25 +191,48 @@ const ResultIcon = aiResult?.Icon;
           <button
             className="analyze-btn"
             onClick={() => analyzeEmergency()}
-            disabled={!incident.trim()}
+            disabled={!incident.trim() || loading}
           >
-            <AiIcon size={18} />
-            Analyze Emergency
+            {loading ? (
+          <>🔄 Analyzing...</>
+           ) : (
+           <>
+         <AiIcon size={18} />
+         Analyze Emergency
+         </>
+        )}
           </button>
         </div>
 
         <div className="analyzer-result-panel">
-          {!aiResult ? (
-            <div className="result-empty">
-              <img
-               src="/ai.jpg"
-               alt="AI"
-               className="empty-image"
-              />
-              <h3>Awaiting analysis</h3>
-              <p>Describe an incident to receive instant guidance.</p>
-            </div>
-          ) : (
+  {loading ? (
+    <div className="result-empty">
+      <img
+        src="/robot.jpg"
+        alt="AI Loading"
+        className="empty-image"
+      />
+      <h3>Analyzing Emergency...</h3>
+      <p>
+        AI is processing the incident details and
+        determining the best response.
+      </p>
+    </div>
+  ) : !aiResult ? (
+    <div className="result-empty">
+      <img
+        src="/ai.jpg"
+        alt="AI"
+        className="empty-image"
+      />
+      <h3>AI Ready to Analyze</h3>
+      <p>
+        Enter details about the situation and our
+        AI will identify the emergency type,
+        severity level and recommended actions.
+      </p>
+    </div>
+  ) : (
 
             <div className={`result-card result-card--${aiResult.tone}`}>
               <div className="result-top">
