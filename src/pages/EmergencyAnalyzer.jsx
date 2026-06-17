@@ -10,10 +10,22 @@ import {
 } from "../components/Icons";
 import "./EmergencyAnalyzer.css";
 const examples = [
-  "Someone is bleeding after a road accident",
-  "There is smoke and fire in the building",
-  "A robbery just happened nearby",
-  "A person collapsed and is unconscious",
+  {
+    text: "Someone is bleeding after a road accident",
+    icon: "🩸",
+  },
+  {
+    text: "There is smoke and fire in the building",
+    icon: "🔥",
+  },
+  {
+    text: "A robbery just happened nearby",
+    icon: "🚔",
+  },
+  {
+    text: "A person collapsed and is unconscious",
+    icon: "🚑",
+  },
 ];
 
 const EmergencyAnalyzer = () => {
@@ -170,24 +182,21 @@ const ResultIcon = aiResult?.Icon;
           <div className="input-tip">
             💡 Be specific for better analysis
          </div>
-          <div className="analyzer-examples">
-            <span>Try an example:</span>
-            <div>
-              {examples.map((ex) => (
-                <button
-                  key={ex}
-                  type="button"
-                  onClick={() => {
-                    setIncident(ex);
-                    analyzeEmergency(ex);
-                  }}
-                >
-                  {ex}
-                </button>
-              ))}
-            </div>
-          </div>
-
+      <div className="example-grid">
+     {examples.map((ex) => (
+    <button
+      key={ex.text}
+      className="example-card"
+      onClick={() => {
+        setIncident(ex.text);
+        analyzeEmergency(ex.text);
+      }}
+    >
+      <span className="example-icon">{ex.icon}</span>
+      <span>{ex.text}</span>
+    </button>
+  ))}
+</div>
           <button
             className="analyze-btn"
             onClick={() => analyzeEmergency()}
