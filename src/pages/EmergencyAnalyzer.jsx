@@ -13,18 +13,22 @@ const examples = [
   {
     text: "Someone is bleeding after a road accident",
     icon: "🩸",
+     color: "medical"
   },
   {
     text: "There is smoke and fire in the building",
     icon: "🔥",
+     color: "fire"
   },
   {
     text: "A robbery just happened nearby",
     icon: "🚔",
+    color: "police"
   },
   {
     text: "A person collapsed and is unconscious",
-    icon: "🚑",
+     icon: "🩺",
+    color: "health"
   },
 ];
 
@@ -192,8 +196,12 @@ const ResultIcon = aiResult?.Icon;
         analyzeEmergency(ex.text);
       }}
     >
-      <span className="example-icon">{ex.icon}</span>
-      <span>{ex.text}</span>
+    <span className={`example-icon ${ex.color}`}>
+  {ex.icon}
+</span>
+<span className="example-text">
+  {ex.text}
+</span>
     </button>
   ))}
 </div>
@@ -228,19 +236,27 @@ const ResultIcon = aiResult?.Icon;
       </p>
     </div>
   ) : !aiResult ? (
-    <div className="result-empty">
-      <img
-        src="/ai.jpg"
-        alt="AI"
-        className="empty-image"
-      />
-      <h3>AI Ready to Analyze</h3>
-      <p>
-        Enter details about the situation and our
-        AI will identify the emergency type,
-        severity level and recommended actions.
-      </p>
+   <div className="result-empty">
+
+  <div className="ai-status-card">
+    <div className="ai-circle">
+      🤖
     </div>
+
+    <span className="status-badge">
+      AI Status: Ready
+    </span>
+
+    <h3>AI Ready to Analyze</h3>
+
+    <p>
+      Enter details about the situation and our AI
+      will identify the emergency type, severity
+      level and recommended actions.
+    </p>
+  </div>
+
+</div>
   ) : (
 
             <div className={`result-card result-card--${aiResult.tone}`}>
