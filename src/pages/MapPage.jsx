@@ -37,38 +37,28 @@ const MapPage = () => {
   const [emergencyMode, setEmergencyMode] = useState(false);
   const [lastUpdated, setLastUpdated] = useState(null);
   const [searchParams] = useSearchParams();
-
-  const getLocation = () => {
-      console.log("getLocation called");
-
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported by your browser");
-      return;
+    
+   const getLocation = () => {
+  if (watchId !== null) return;
+  const id = navigator.geolocation.watchPosition(
+    (position) => {
+      setLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    },
+    (error) => {
+      console.log(error);
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 60000,
     }
-    if (watchId !== null) return;
-    const id = navigator.geolocation.watchPosition(
-      (position) => {
-        console.log("Received Location Sucessfully");
-        console.log(
-      "LAT:",
-       position.coords.latitude,
-      "LNG:",
-       position.coords.longitude
-      ); 
-        setLocation({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
-        setLastUpdated(new Date());
-      },
-      (error) => {
-         console.log("Location Error Code:", error.code);
-      console.log("Location Error Message:", error.message);
-      }
-    );
-    setWatchId(id);
-  };
+  );
 
+  setWatchId(id);
+};
   const getEmergencyNumber = () => {
     if (type === "hospital") return "102";
     if (type === "police") return "100";
@@ -108,7 +98,7 @@ const MapPage = () => {
     const query = `
   [out:json] [timeout:10];
   (
-  node["amenity"="${amenityType}"](around:5000,${location.lat},${location.lng});
+  node["amenity"="${amenityType}"](around:25000,${location.lat},${location.lng});
   );
   out body;
   `;
@@ -418,7 +408,6 @@ const MapPage = () => {
             </Marker>
         
             {routePositions.length > 0 && <Polyline positions={routePositions} />}
-            console.log("First Place:", sortedPlaces[0]);
             {sortedPlaces.map((place, index) => (
               <Marker
                 key={index}
