@@ -120,7 +120,7 @@ const ResultIcon = aiResult?.Icon;
       <section className="analyzer-hero">
       <div className="hero-left" >
     <div className="ai-badge">✨ AI Powered</div>
-      <h2>Describe the emergency</h2>
+      <h2>Describe the <span>emergency</span></h2>
         <p>
           Our analyzer reads your description, classifies the emergency type and
           severity, and guides you to the right help instantly.
@@ -129,7 +129,7 @@ const ResultIcon = aiResult?.Icon;
 
   <div className="feature-card">
     <div className="feature-icon">🧠</div>
-    <div>
+    <div className="feature-content">
       <h4>Smart Analysis</h4>
       <p>AI detects severity and type</p>
     </div>
@@ -137,7 +137,7 @@ const ResultIcon = aiResult?.Icon;
 
   <div className="feature-card">
     <div className="feature-icon">⚡</div>
-    <div>
+    <div className="feature-content">
       <h4>Instant Guidance</h4>
       <p>Get actionable steps immediately</p>
     </div>
@@ -145,7 +145,7 @@ const ResultIcon = aiResult?.Icon;
 
   <div className="feature-card">
     <div className="feature-icon">🛡️</div>
-    <div>
+     <div className="feature-content">
       <h4>Stay Safe</h4>
       <p>Accurate help when needed most</p>
     </div>
@@ -154,7 +154,7 @@ const ResultIcon = aiResult?.Icon;
         </div>
          <div className="hero-right">
             <img
-         src="/robot.jpg"
+         src="/1st.png"
          alt="AI Analyzer"
          className="hero-image"
          />
@@ -168,7 +168,7 @@ const ResultIcon = aiResult?.Icon;
     📝
   </div>
 
-  <div>
+  <div className="input-content">
     <h3>Incident Description</h3>
     <p>
       Tell us what happened and AI will
@@ -186,6 +186,9 @@ const ResultIcon = aiResult?.Icon;
           <div className="input-tip">
             💡 Be specific for better analysis
          </div>
+         <div className="example-title">
+           Try an example:
+       </div>
       <div className="example-grid">
      {examples.map((ex) => (
     <button
@@ -213,19 +216,19 @@ const ResultIcon = aiResult?.Icon;
             {loading ? (
           <>🔄 Analyzing...</>
            ) : (
-           <>
-         <AiIcon size={18} />
-         Analyze Emergency
+          <>
+          🤖
+          Analyze Emergency
          </>
-        )}
-          </button>
+       )}
+      </button>
         </div>
-
-        <div className="analyzer-result-panel">
+         <div className="analyzer-result-panel">
   {loading ? (
+
     <div className="result-empty">
       <img
-        src="/robot.jpg"
+        src="/2nd.png"
         alt="AI Loading"
         className="empty-image"
       />
@@ -235,67 +238,68 @@ const ResultIcon = aiResult?.Icon;
         determining the best response.
       </p>
     </div>
-  ) : !aiResult ? (
-   <div className="result-empty">
 
-  <div className="ai-status-card">
-    <div className="ai-circle">
-      🤖
+  ) : !aiResult ? (
+
+    <div className="result-empty">
+      <img
+        src="/2nd.png"
+        alt="AI Ready"
+        className="empty-image"
+      />
+      <h3>AI Ready to Analyze</h3>
+      <p>
+        Enter details about the situation and our AI
+        will identify the emergency type, severity
+        level and recommended actions.
+      </p>
     </div>
 
-    <span className="status-badge">
-      AI Status: Ready
-    </span>
+  ) : (     
 
-    <h3>AI Ready to Analyze</h3>
+  <div className={`result-card result-card--${aiResult.tone}`}>
+    <div className="result-top">
+      <span className="result-icon">
+        <ResultIcon size={24} />
+      </span>
 
-    <p>
-      Enter details about the situation and our AI
-      will identify the emergency type, severity
-      level and recommended actions.
-    </p>
+      <div>
+        <h3>{aiResult.type}</h3>
+
+        <span className={`sev sev--${aiResult.tone}`}>
+          Severity: {aiResult.severity}
+        </span>
+      </div>
+    </div>
+
+    <div className="result-action">
+      <h4>Recommended Action</h4>
+      <p>{aiResult.action}</p>
+    </div>
+
+    <div className="result-buttons">
+      <a
+        className="result-call-btn"
+        href={`tel:${aiResult.call}`}
+      >
+        Call {aiResult.call}
+      </a>
+
+      <button
+        className="result-nav-btn"
+        onClick={() => navigate(aiResult.route)}
+      >
+        <RouteIcon size={16} />
+        {aiResult.cta}
+      </button>
+    </div>
   </div>
 
-</div>
-  ) : (
-
-            <div className={`result-card result-card--${aiResult.tone}`}>
-              <div className="result-top">
-                <span className="result-icon">
-                <ResultIcon size={24} />
-                </span>
-                <div>
-                  <h3>{aiResult.type}</h3>
-                  <span className={`sev sev--${aiResult.tone}`}>
-                    Severity: {aiResult.severity}
-                  </span>
-                </div>
-              </div>
-
-              <div className="result-action">
-                <h4>Recommended Action</h4>
-                <p>{aiResult.action}</p>
-              </div>
-
-              <div className="result-buttons">
-                <a className="result-call-btn" href={`tel:${aiResult.call}`}>
-                  Call {aiResult.call}
-                </a>
-                <button
-                  className="result-nav-btn"
-                  onClick={() => navigate(aiResult.route)}
-                >
-                  <RouteIcon size={16} />
-                  {aiResult.cta}
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-        
-      </section>
-    </div>
-  );
+)}
+      </div>
+    </section>
+  </div>
+);
 };
 
 export default EmergencyAnalyzer;
