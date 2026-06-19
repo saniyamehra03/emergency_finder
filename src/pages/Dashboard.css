@@ -47,7 +47,7 @@
 .dash-hero {
   position: relative;
   overflow: hidden;
-  padding: 28px;
+  padding: 22px;
   border-radius: var(--radius-lg);
   background:
     radial-gradient(700px 300px at 100% 0%, rgba(239, 68, 68, 0.16), transparent 60%),
@@ -56,13 +56,7 @@
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  gap: 22px;
-}
-.dashboard-welcome p{
-  color:#ef4444;
-  font-size:16px;
-  font-weight:600;
-  margin-top:4px;
+  gap: 16px;
 }
 .dash-hero-pill {
   color: var(--green);
@@ -71,14 +65,18 @@
 }
 
 .dash-hero-text h2 {
-  font-size: 41px;
-  margin-bottom:10px;
+  font-size: 36px;
+  margin-bottom:6px;
   font-weight:700;
 }
 .dash-hero-text p {
   color: var(--text-dim);
   font-size: 18px;
-   margin-bottom:20px;
+   margin-bottom:10px;
+}
+.dash-hero-text p:first-of-type {
+  color:#ef4444;
+  font-weight:600;
 }
 .dash-search {
   width: 100%;
@@ -190,7 +188,7 @@
   flex-wrap: wrap;
 }
 .section-head h3 {
-  font-size:22px;
+  font-size:20px;
   font-weight:700;
   letter-spacing:1px;
 }
@@ -417,6 +415,11 @@
     width: 100%;
   }
   .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+ @media (max-width: 900px) {
+  .quick-grid {
     grid-template-columns: 1fr;
   }
 }
