@@ -25,7 +25,7 @@ const amenityMeta = {
 };
 
 const NearbyServices = () => {
-  const navigate = useNavigate();
+
   const [location, setLocation] = useState(null);
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -33,22 +33,26 @@ const NearbyServices = () => {
   const [active, setActive] = useState("all");
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    if (!navigator.geolocation) {
-      setError("Geolocation is not supported by your browser");
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(
-      (pos) =>
-        setLocation({
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-        }),
-      () => setError("Unable to access your location. Please enable it."),
-      { timeout: 10000 }
-    );
-  }, []);
+const getLocation = () => {
+  if (!navigator.geolocation) {
+    setError("Geolocation is not supported by your browser");
+    return;
+  }
 
+  navigator.geolocation.getCurrentPosition(
+    (pos) =>
+      setLocation({
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude,
+      }),
+    () => setError("Unable to access your location. Please enable it."),
+    { timeout: 10000 }
+  );
+};
+
+useEffect(() => {
+  getLocation();
+}, []);
   const getDistance = (lat1, lon1, lat2, lon2) => {
     const R = 6371;
     const dLat = ((lat2 - lat1) * Math.PI) / 180;
@@ -184,8 +188,25 @@ const NearbyServices = () => {
           <PinIcon size={38} />
           <h3>No services found</h3>
           <p>Try a different category or widen your search.</p>
-        </div>
-      )}
+           <div className="empty-actions">
+      
+        <button onClick={getLocation}>
+         📍 Enable Location
+        </button>
+         <button onClick={() => {
+          getLocation();
+          fetchAll();
+          }}>
+            🔄 Refresh
+          </button>
+
+      <button onClick={()=> window.location.href="tel:112"}>
+        📞 Emergency 112
+      </button>
+    </div>
+  </div>
+  
+)}
       {!loading && visible.length > 0 && (
         <section className="nearby-grid">
           {visible.map((place, i) => {
