@@ -31,7 +31,6 @@ const examples = [
     color: "health"
   },
 ];
-
 const EmergencyAnalyzer = () => {
   const navigate = useNavigate();
   const [incident, setIncident] = useState("");
