@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-mongoose.connect("mongodb+srv://saniyafinder_emergency4:Emergency123@cluster0.uut00t6.mongodb.net/?appName=Cluster0")
+mongoose.connect("mongodb+srv://saniyafinder_emergency4:Emergency123@cluster0.uut00t6.mongodb.net/emergencyfinder?retryWrites=true&w=majority")
 .then(()=> console.log("MongoDB connected successfully"))
 .catch((err) => console.log(err));
 const app = express();
