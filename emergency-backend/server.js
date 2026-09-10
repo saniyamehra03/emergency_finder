@@ -22,12 +22,22 @@ app.get("/",(req,res)=>{
 });
 app.get("/test-overpass", async (req, res) => {
     try {
+        const query = `
+            [out:json][timeout:10];
+            node["amenity"="hospital"](around:1000,28.58152,77.31286);
+            out;
+        `;
+
         const response = await fetch(
             "https://overpass.private.coffee/api/interpreter",
             {
+                method: "POST",
                 headers: {
-                    "User-Agent": "EmergencyFinder/1.0 (Emergency services finder app)"
-                }
+                    "Content-Type": "text/plain",
+                    "User-Agent":
+                        "EmergencyFinder/1.0 (https://github.com/saniyamehra03/emergency_finder)"
+                },
+                body: query
             }
         );
 
