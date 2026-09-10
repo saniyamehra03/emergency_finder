@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
+const dns = require("dns");
+dns.setDefaultResultOrder("ipv4first");
+
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB connected successfully"))
 .catch((err) => console.log(err));
