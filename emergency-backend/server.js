@@ -23,7 +23,12 @@ app.get("/",(req,res)=>{
 app.get("/test-overpass", async (req, res) => {
     try {
         const response = await fetch(
-            "https://overpass.private.coffee/api/interpreter"
+            "https://overpass.private.coffee/api/interpreter",
+            {
+                headers: {
+                    "User-Agent": "EmergencyFinder/1.0 (Emergency services finder app)"
+                }
+            }
         );
 
         const text = await response.text();
