@@ -18,7 +18,26 @@ const emergencyRoutes = require('./routes/emergencyRoutes');
 app.use("/",emergencyRoutes);
 
 app.get("/",(req,res)=>{
-    res.send("Emergency Backend Running 🚀");
+    res.send("Emergency Backend Running 🚀"); 
+});
+app.get("/test-overpass", async (req, res) => {
+    try {
+        const response = await fetch(
+            "https://overpass.private.coffee/api/interpreter"
+        );
+
+        const text = await response.text();
+
+        res.status(response.status).send(text);
+
+    } catch (error) {
+        console.error("Test Overpass Error:", error);
+
+        res.status(500).json({
+            error: error.message,
+            cause: error.cause?.code
+        });
+    }
 });
 const PORT = process.env.PORT || 5000;
 app.listen(PORT,"0.0.0.0", () => {
